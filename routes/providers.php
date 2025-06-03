@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Provider\ProviderController;
 
+Route::get('/providers/search', [ProviderController::class, 'search'])
+    ->name('providers.search');
+
 Route::prefix("providers")->group(function () {
     Route::get('/', [ProviderController::class, 'index'])
         ->name('providers.index');

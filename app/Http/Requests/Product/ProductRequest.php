@@ -23,7 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:products,slug',
+            'slug' => 'nullable|string|max:255|unique:products,slug,' . $this->product?->id,
             'price' => 'required|numeric|min:0',
             'description' => 'nullable|string',
             'is_active' => 'boolean',

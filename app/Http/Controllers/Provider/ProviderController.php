@@ -77,4 +77,20 @@ class ProviderController extends Controller
 
         return response()->json(['message' => 'Provider deleted successfully'], 204);
     }
+
+    public function search(Request $request): JsonResource
+    {
+        $query = $request->get('q', '');
+        $limit = $request->get('limit', 20);
+
+        $providers = Provider::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('email', 'LIKE', "%{$query}%")
+            ->orWhere('address', 'LIKE', "%{$query}%")
+            ->orWhere('phone', 'LIKE', "%{$query}%")
+            ->limit($limit)
+            ->get();
+
+        return ProviderResource::collection($providers);
+    }
+
 }

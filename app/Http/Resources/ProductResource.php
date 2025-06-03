@@ -22,6 +22,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'is_active' => $this->is_active,
             'provider' => ProviderResource::make($this->whenLoaded('provider')),
+            'provider_id' => $this->provider_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

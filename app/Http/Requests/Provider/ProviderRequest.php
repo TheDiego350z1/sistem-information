@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Provider;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class ProviderRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class ProviderRequest extends FormRequest
     {
         return [
             "name" => "required|string|max:255",
-            "email" => "nullable|email|max:255|unique:providers,email,",
+            "email" => "nullable|email|max:255|unique:providers,email," . $this->provider?->id,
             "address" => "nullable|string|max:255",
             "phone" => "nullable|string|max:20",
             "description" => "nullable|string|max:500",
